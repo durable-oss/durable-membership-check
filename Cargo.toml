@@ -1,0 +1,33 @@
+[workspace]
+resolver = "3"
+members = [
+    "lib/dmc-core",
+    "lib/dmc-bloom",
+    "lib/dmc",
+    "bin/dmc-cli",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+license = "MIT"
+repository = "https://github.com/durableprogramming/durable-membership-check"
+documentation = "https://docs.rs/dmc"
+authors = ["Durable Programming, LLC <commercial@durableprogramming.com>"]
+
+[workspace.dependencies]
+dmc-core = { version = "0.1.0", path = "lib/dmc-core" }
+dmc-bloom = { version = "0.1.0", path = "lib/dmc-bloom" }
+dmc = { version = "0.1.0", path = "lib/dmc" }
+inventory = "0.3"
+
+# CLI only. The libraries stay dependency-free; serde lives in `bin/dmc-cli`
+# so that linking a filter never pulls a serialization framework in with it.
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
