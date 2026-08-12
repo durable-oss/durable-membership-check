@@ -1,0 +1,25 @@
+[package]
+name = "dmc-cli"
+description = "Command-line access to durable-membership-check filters."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+documentation = "https://docs.rs/dmc-cli"
+
+[lib]
+name = "dmc_cli"
+path = "src/lib.rs"
+
+[[bin]]
+name = "dmc-cli"
+path = "src/main.rs"
+
+[dependencies]
+dmc.workspace = true
+dmc-core.workspace = true
+dmc-bloom.workspace = true
+serde.workspace = true
+serde_json.workspace = true

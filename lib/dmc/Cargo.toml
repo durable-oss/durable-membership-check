@@ -1,0 +1,18 @@
+[package]
+name = "dmc"
+description = "Fast, low-dependency membership and approximate membership filters."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+documentation = "https://docs.rs/dmc"
+
+[dependencies]
+dmc-core.workspace = true
+dmc-bloom = { workspace = true, optional = true }
+
+[features]
+default = ["bloom"]
+bloom = ["dep:dmc-bloom"]

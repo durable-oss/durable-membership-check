@@ -1,0 +1,13 @@
+[package]
+name = "dmc-core"
+description = "Core traits and plugin registry for durable-membership-check filters."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+documentation = "https://docs.rs/dmc-core"
+
+[dependencies]
+inventory.workspace = true

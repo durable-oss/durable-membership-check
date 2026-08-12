@@ -1,0 +1,35 @@
+{
+  "id": "bloom_001",
+  "generated_by": "correctness-testing/test/determinism_test.rb",
+  "key_generator": "random_keys(256, 70030010)",
+  "params": {
+    "expected_items": 256,
+    "false_positive_rate": 0.01,
+    "seed": 70030010
+  },
+  "len": 256,
+  "memory_bytes": 312,
+  "false_positive_rate": 0.010619260328281144,
+  "probe_generator": "disjoint_probe_keys(members, 2000, 70030010)",
+  "probe_positives": [
+    96,
+    309,
+    344,
+    453,
+    647,
+    843,
+    1010,
+    1296,
+    1390,
+    1392,
+    1411,
+    1584,
+    1653,
+    1681,
+    1751,
+    1812,
+    1862,
+    1938,
+    1989
+  ]
+}

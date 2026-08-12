@@ -1,0 +1,37 @@
+# frozen_string_literal: true
+
+require "rake/testtask"
+
+REPO_ROOT = File.expand_path("..", __dir__)
+
+desc "Build the dmc-cli binary the suite drives"
+task :build do
+  sh "cargo build -p dmc-cli", chdir: REPO_ROOT
+end
+
+Rake::TestTask.new(test: :build) do |t|
+  t.libs << "lib" << "test"
+  t.test_files = FileList["test/**/*_test.rb"]
+  t.warning = true
+end
+
+desc "Run the suite including the slow tiers"
+task :slow do
+  ENV["DMC_SLOW_TESTS"] = "1"
+  Rake::Task[:test].invoke
+end
+
+desc "Print every filter the suite will run against, with its capabilities"
+task filters: :build do
+  $LOAD_PATH.unshift(File.expand_path("lib", __dir__))
+  require "dmc_check"
+
+  DmcCheck::FilterSpec.all.each do |spec|
+    puts "#{spec.id}  (family #{spec.family}, version #{spec.version})"
+    puts "  #{spec.description}"
+    spec.capabilities.each { |name, value| puts format("    %-32s %s", name, value.inspect) }
+    puts
+  end
+end
+
+task default: :test

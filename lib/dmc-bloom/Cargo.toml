@@ -1,0 +1,14 @@
+[package]
+name = "dmc-bloom"
+description = "Bloom filter implementations for durable-membership-check."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+documentation = "https://docs.rs/dmc-bloom"
+
+[dependencies]
+dmc-core.workspace = true
+inventory.workspace = true
