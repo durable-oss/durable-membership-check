@@ -14,9 +14,11 @@ dmc-core.workspace = true
 dmc-bloom = { workspace = true, optional = true }
 dmc-xor = { workspace = true, optional = true }
 dmc-fuse = { workspace = true, optional = true }
+dmc-zor = { workspace = true, optional = true }
 
 [features]
-default = ["bloom", "xor", "fuse"]
+default = ["bloom", "xor", "fuse", "zor"]
 bloom = ["dep:dmc-bloom"]
 xor = ["dep:dmc-xor"]
 fuse = ["dep:dmc-fuse"]
+zor = ["dep:dmc-zor"]

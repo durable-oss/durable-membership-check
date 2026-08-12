@@ -1,0 +1,25 @@
+{
+  "id": "zor_001",
+  "generated_by": "correctness-testing/test/determinism_test.rb",
+  "key_generator": "random_keys(256, 70030010)",
+  "params": {
+    "expected_items": 256,
+    "false_positive_rate": 0.01,
+    "seed": 70030010
+  },
+  "len": 256,
+  "memory_bytes": 384,
+  "false_positive_rate": 0.00390625,
+  "probe_generator": "disjoint_probe_keys(members, 2000, 70030010)",
+  "probe_positives": [
+    349,
+    626,
+    691,
+    916,
+    1067,
+    1588,
+    1689,
+    1726,
+    1742
+  ]
+}

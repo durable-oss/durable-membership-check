@@ -1,0 +1,15 @@
+[package]
+name = "dmc-zor"
+description = "Zor filter implementations for durable-membership-check."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+documentation = "https://docs.rs/dmc-zor"
+
+[dependencies]
+dmc-core.workspace = true
+dmc-fuse.workspace = true
+inventory.workspace = true

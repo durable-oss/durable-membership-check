@@ -5,6 +5,7 @@ members = [
     "lib/dmc-bloom",
     "lib/dmc-xor",
     "lib/dmc-fuse",
+    "lib/dmc-zor",
     "lib/dmc",
     "bin/dmc-cli",
 ]
@@ -23,6 +24,7 @@ dmc-core = { version = "0.1.0", path = "lib/dmc-core" }
 dmc-bloom = { version = "0.1.0", path = "lib/dmc-bloom" }
 dmc-xor = { version = "0.1.0", path = "lib/dmc-xor" }
 dmc-fuse = { version = "0.1.0", path = "lib/dmc-fuse" }
+dmc-zor = { version = "0.1.0", path = "lib/dmc-zor" }
 dmc = { version = "0.1.0", path = "lib/dmc" }
 inventory = "0.3"
 

@@ -40,6 +40,7 @@ pub const KNOWN: &[(u32, &str)] = &[
     (4, "ribbon"),
     (5, "quotient"),
     (6, "cuckoo"),
+    (7, "zor"),
 ];
 
 /// Returns the assigned code for `family`, or `None` if this table has none.

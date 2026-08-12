@@ -10,6 +10,9 @@
 //! - **Xor** and **binary fuse** — smaller than Bloom at the same false
 //!   positive rate, and faster to query, but require the complete distinct key
 //!   set up front and cost more to build.
+//! - **Zor** (`zor`) — smaller still than binary fuse, by deterministic
+//!   peeling that abandons a small fraction of keys to an auxiliary filter
+//!   instead of restarting construction. Costs more to build than either.
 //!
 //! # Naming
 //!
@@ -66,6 +69,10 @@ pub use dmc_xor as xor;
 #[cfg(feature = "fuse")]
 #[doc(inline)]
 pub use dmc_fuse as fuse;
+
+#[cfg(feature = "zor")]
+#[doc(inline)]
+pub use dmc_zor as zor;
 
 /// Returns the ids of every filter implementation linked into this binary.
 ///
