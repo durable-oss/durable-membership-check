@@ -1,0 +1,17 @@
+[package]
+name = "dmc-fuse"
+description = "Binary fuse filter implementations for durable-membership-check."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+documentation = "https://docs.rs/dmc-fuse"
+
+[dependencies]
+dmc-core.workspace = true
+inventory.workspace = true
+
+[dev-dependencies]
+dmc-xor.workspace = true

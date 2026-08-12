@@ -327,8 +327,13 @@ class StatisticalTest < DmcCheck::ConformanceTest
       optimal = Math.log2(1.0 / claimed)
 
       # Slack above the published figure, since the published number is an
-      # asymptotic and a real filter rounds up to whole words.
-      ceiling = optimal * (1 + overhead + 0.15)
+      # asymptotic and a real filter rounds up to whole words. A further
+      # relative epsilon absorbs float round-trip noise: a filter landing
+      # exactly on the nominal ceiling (e.g. a binary fuse filter at a
+      # segment count that gives precisely 1.25x overhead) must not fail
+      # only because `optimal * (1 + overhead + 0.15)` and the measured
+      # `bits_per_item` round to adjacent floats.
+      ceiling = optimal * (1 + overhead + 0.15) * (1 + 1e-9)
 
       assert_operator bits_per_item, :<=, ceiling,
                       "#{spec.id} uses #{bits_per_item.round(2)} bits/item at an achieved " \
@@ -384,7 +389,20 @@ class StatisticalTest < DmcCheck::ConformanceTest
   for_each_filter "has no key with a far-above-average false positive rate" do |spec|
     members = Generators.random_keys(2_000, 30_050_010)
     candidates = Generators.disjoint_probe_keys(members, 400, 30_050_010)
-    seeds = 200
+
+    # 200 seeds was calibrated against Bloom's ~1% nominal rate, where a
+    # candidate accumulates ~2 hits on average and the max over 400
+    # candidates is a reasonably tight statistic. xor and fuse run at a
+    # fixed ~0.4% rate (1/256): at 200 seeds a candidate averages under one
+    # hit, so the max-of-400 order statistic swings past 4x the mean from
+    # pure sampling noise alone — confirmed by re-running at 2,000 seeds,
+    # where the same filters settle to a worst/mean ratio around 2.5-2.7x.
+    # Scaling seeds to keep the expected hit count roughly constant across
+    # families keeps the statistical power — and therefore the 4x
+    # threshold's validity — comparable regardless of the filter's nominal
+    # rate.
+    target_rate = spec.honors_target_fpr? ? 0.01 : 1.0 / 256.0
+    seeds = [(200 * 0.01 / target_rate).round, 200].max
 
     # For each candidate, how many of the independently seeded filters call it
     # a member.
@@ -408,7 +426,7 @@ class StatisticalTest < DmcCheck::ConformanceTest
 
     # A factor of four above the mean. The paper's concern is keys whose
     # individual rate is far above average; four times is well past sampling
-    # noise at 200 seeds while still catching a genuine weak spot.
+    # noise at this seed count while still catching a genuine weak spot.
     ceiling = mean * 4
 
     assert_operator worst, :<=, ceiling,

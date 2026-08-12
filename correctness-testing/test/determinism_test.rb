@@ -192,8 +192,11 @@ class DeterminismTest < DmcCheck::ConformanceTest
   # transitively; this pins it for a key set chosen to exercise the chunk
   # boundaries specifically.
   for_each_filter "hashes chunk-boundary keys stably" do |spec|
+    # (0..65).map already yields "" at n=0, so it is not repeated below —
+    # a filter that rejects duplicate keys (xor, fuse) would otherwise fail
+    # this key set on that alone, which is not what this test is about.
     keys = (0..65).map { |n| ("\xAB".b * n) } + [
-      "".b, "\x00".b, "\xFF".b * 8, "\x00".b * 9,
+      "\x00".b, "\xFF".b * 8, "\x00".b * 9,
       "the quick brown fox jumps over the lazy dog".b
     ]
 

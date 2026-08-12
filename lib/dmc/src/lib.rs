@@ -59,6 +59,14 @@ pub use dmc_core::{
 #[doc(inline)]
 pub use dmc_bloom as bloom;
 
+#[cfg(feature = "xor")]
+#[doc(inline)]
+pub use dmc_xor as xor;
+
+#[cfg(feature = "fuse")]
+#[doc(inline)]
+pub use dmc_fuse as fuse;
+
 /// Returns the ids of every filter implementation linked into this binary.
 ///
 /// # Examples

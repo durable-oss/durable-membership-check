@@ -3,6 +3,8 @@ resolver = "3"
 members = [
     "lib/dmc-core",
     "lib/dmc-bloom",
+    "lib/dmc-xor",
+    "lib/dmc-fuse",
     "lib/dmc",
     "bin/dmc-cli",
 ]
@@ -19,6 +21,8 @@ authors = ["Durable Programming, LLC <commercial@durableprogramming.com>"]
 [workspace.dependencies]
 dmc-core = { version = "0.1.0", path = "lib/dmc-core" }
 dmc-bloom = { version = "0.1.0", path = "lib/dmc-bloom" }
+dmc-xor = { version = "0.1.0", path = "lib/dmc-xor" }
+dmc-fuse = { version = "0.1.0", path = "lib/dmc-fuse" }
 dmc = { version = "0.1.0", path = "lib/dmc" }
 inventory = "0.3"
 

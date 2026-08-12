@@ -8,6 +8,8 @@ version = "0.1.0"
 dependencies = [
  "dmc-bloom",
  "dmc-core",
+ "dmc-fuse",
+ "dmc-xor",
 ]
 
 [[package]]
@@ -33,6 +35,23 @@ dependencies = [
 name = "dmc-core"
 version = "0.1.0"
 dependencies = [
+ "inventory",
+]
+
+[[package]]
+name = "dmc-fuse"
+version = "0.1.0"
+dependencies = [
+ "dmc-core",
+ "dmc-xor",
+ "inventory",
+]
+
+[[package]]
+name = "dmc-xor"
+version = "0.1.0"
+dependencies = [
+ "dmc-core",
  "inventory",
 ]
 
